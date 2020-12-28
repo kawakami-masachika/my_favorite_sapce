@@ -34,5 +34,11 @@ module Space
 
     # デフォルトを日本語に設定
     config.i18n.defalut_locale = :ja
+
+    # タイムゾーンを日本に設定
+    config.time_zone = 'Tokyo'
+    # DBのタイムゾーンを日本時間に設定
+    config.active_record.default_timezone = :local
+
   end
 end
