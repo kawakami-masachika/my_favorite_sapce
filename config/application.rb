@@ -31,5 +31,8 @@ module Space
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # デフォルトを日本語に設定
+    config.i18n.defalut_locale = :ja
   end
 end
