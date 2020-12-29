@@ -24,8 +24,6 @@ default: &default
 development:
   <<: *default
   database: space_development
-  username: <%= ENV.fetch("DATABASE_USER") {postgres} %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") {postgres} %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
