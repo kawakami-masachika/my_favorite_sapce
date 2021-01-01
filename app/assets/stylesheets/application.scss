@@ -14,3 +14,24 @@
  *= require_self
  */
 @import "bootstrap/scss/bootstrap";
+
+/* コンテンツサイズ */
+$content-width-sm: 340px;
+$content-width-tab: 700px;
+$content-width-pc: 1200px;
+
+$breakpoints:(
+  "sm": 'screen and (max-width: 767px)',
+  "md": 'screen and (min-width: 768px)',
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)}{
+    @content;
+  }
+}
+
+.base-container{
+  margin: 0 auto;
+  padding: 1rem;
+}
