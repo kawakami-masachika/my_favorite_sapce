@@ -15,9 +15,21 @@ option = {headers: true}
 # 系統マスタのレコードを作成
 style_file_path = "db/csv/style.csv"
 style_list = []
+Style.destroy_all
 CSV.foreach(style_file_path, option) do |row|
   style_list << row.to_h
 end
 
 Style.create!(style_list)
 puts "系統モデルのCSVデータが登録できました。"
+
+# ブランドマスタのテストレコードを作成
+brand_file_path = "db/csv/brand.csv"
+brand_list = []
+Brand.destroy_all
+CSV.foreach(brand_file_path, option) do |row|
+  brand_list << row.to_h
+end
+
+Brand.create!(brand_list)
+puts "ブランドモデルのCSVデータが登録できました。"
