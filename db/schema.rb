@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_02_030204) do
+ActiveRecord::Schema.define(version: 2021_01_02_072233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "shop_styles", force: :cascade do |t|
+    t.bigint "shop_id", null: false, comment: "ショップID"
+    t.bigint "style_id", null: false, comment: "系統マスタID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id", "style_id"], name: "index_shop_styles_on_shop_id_and_style_id", unique: true
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "shop_name", null: false, comment: "ショップ名"
+    t.time "open_time", null: false, comment: "開店時間"
+    t.time "close_time", null: false, comment: "閉店時間"
+    t.string "tel_number", limit: 11, null: false, comment: "電話番号"
+    t.string "site_url", default: "", comment: "WEBサイトURL"
+    t.string "instgram_url", default: "", comment: "instagram URL"
+    t.text "shop_info", null: false, comment: "店舗情報"
+    t.string "sales_info", default: "", comment: "定休日・営業情報"
+    t.bigint "user_id", null: false, comment: "投稿ユーザーID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_shops_on_user_id"
+  end
 
   create_table "styles", force: :cascade do |t|
     t.string "taste", null: false
@@ -33,4 +56,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_030204) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "shop_styles", "shops"
+  add_foreign_key "shop_styles", "styles"
+  add_foreign_key "shops", "users"
 end
