@@ -2,11 +2,21 @@ require 'CSV'
 
 # テストユーザーの作成
 EMAIL = 'test@example.com'
+ADMIN_EAMIL = 'admin@example.com'
 PASSWORD = 'password'
 
 User.find_or_create_by(email: EMAIL) do |user|
   user.password = PASSWORD
   puts "サンプルユーザー登録完了"
+end
+
+# 管理者管理者ユーザー作成
+AdminUser.find_or_create_by(email: ADMIN_EAMIL) do | admin_user |
+  if Rails.env.development?
+    admin_user.password = PASSWORD
+    admin_user.password_confirmation = PASSWORD
+  end
+  puts "管理者ユーザーを作成しました"
 end
 
 # CSV読み込みスタイルのオプション
