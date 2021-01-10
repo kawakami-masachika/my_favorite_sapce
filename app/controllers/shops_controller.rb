@@ -14,7 +14,7 @@ class ShopsController < ApplicationController
       flash[:notice] = "新たにショップを登録しました"
       redirect_to root_path
     else
-      render new
+      render 'new'
     end
   end
 
