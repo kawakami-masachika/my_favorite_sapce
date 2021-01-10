@@ -2,4 +2,33 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!
   def index
   end
+
+  def new
+    @shop = ShopRegistrationForm.new
+    @shop.user_id =  current_user.id
+  end
+
+  def create
+    @shop = ShopRegistrationForm.new(shop_params)
+    if @shop.save
+      flash[:notice] = "新たにショップを登録しました"
+      redirect_to root_path
+    else
+      render new
+    end
+  end
+
+  private
+  def shop_params
+    params.require(:shop_registration_form).permit( :shop_name,
+                                                    :open_time,
+                                                    :close_time,
+                                                    :tel_number,
+                                                    :site_url,
+                                                    :instgram_url,
+                                                    :shop_info,
+                                                    :sales_info,
+                                                    :user_id
+                                                  )
+  end
 end
