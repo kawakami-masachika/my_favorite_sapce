@@ -1,0 +1,36 @@
+<%= form_with model: @shop, url: user_shops_path, local: true do |f| %>
+  <div class="form-group">
+    <p><%= f.label :shop_name %></p>
+    <%= f.text_field :shop_name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :open_time %></p>
+    <%= f.time_field :open_time, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :close_time %></p>
+    <%= f.time_field :close_time, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :tel_number %></p>
+    <%= f.text_field :tel_number, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :site_url %></p>
+    <%= f.text_field :site_url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :instgram_url %></p>
+    <%= f.text_field :instgram_url, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :sales_info %></p>
+    <%= f.text_field :sales_info, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :shop_info %></p>
+    <%= f.text_area :shop_info, class: "form-control" %>
+  </div>
+  <%= f.hidden_field :user_id %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
