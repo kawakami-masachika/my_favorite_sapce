@@ -1,24 +1,48 @@
 class ShopRegistrationForm
   include ActiveModel::Model
-  include ActiveModel::Attributes
 
-  attribute :shop_name, :string
-  attribute :open_time, :time
-  attribute :close_time, :time
-  attribute :tel_number, :string
-  attribute :site_url, :string
-  attribute :instgram_url, :string
-  attribute :shop_info, :string
-  attribute :sales_info, :string
-  attribute :user_id, :big_integer
+  attr_accessor :shop_name,
+                :open_time,
+                :close_time,
+                :tel_number,
+                :site_url,
+                :instgram_url,
+                :shop_info,
+                :sales_info,
+                :user_id
+
+  def initialize(shop_params = {})
+    @shop_name = shop_params[:shop_name]
+    @open_time = shop_params[:open_time]
+    @close_time = shop_params[:close_time]
+    @tel_number = shop_params[:tel_number]
+    @instgram_url = shop_params[:instgram_url]
+    @site_url = shop_params[:site_url]
+    @shop_info = shop_params[:shop_info]
+    @sales_info = shop_params[:sales_info]
+    @user_id = shop_params[:user_id]
+  end
+
+  validates :shop_name, presence: true
+  validates :shop_name, length: {maximum: 100}, if: Proc.new{|shop|shop.shop_name.present?}  #最大文字数
+
+  validates :open_time, :close_time, :tel_number, :user_id, presence: true  #空チェック
+
+  validates :tel_number, length: {maximum: 11}, format: {with: /\A[0-9]+\z/, message: "は数字で入力して下さい"},if: Proc.new{|shop|shop.tel_number.present?} #最大文字数, フォーマット
+
+  validates :shop_info, presence: true
+  validates :shop_info, length: {maximum: 500}, if: Proc.new{|shop|shop.shop_info.present?}  #最大文字数
+
+  validates :sales_info, length: {maximum: 50}, if: Proc.new{|shop|shop.sales_info.present?} #最大文字数
 
   def save
+    return false if invalid?
     shop.save!
   end
 
   private
   def shop
-    Shop.create( shop_name: shop_name, 
+    shop = Shop.new( shop_name: shop_name,
                   open_time: open_time,
                   close_time: close_time,
                   tel_number: tel_number, 
