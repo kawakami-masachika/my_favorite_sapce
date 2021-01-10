@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   # トップページ
   root to: 'shops#index'
+  resources :users, only: %W() do
+    resources :shops
+  end
 end
