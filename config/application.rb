@@ -34,11 +34,11 @@ module Space
 
     # デフォルトを日本語に設定
     config.i18n.default_locale = :ja
-
     # タイムゾーンを日本に設定
     config.time_zone = 'Tokyo'
     # DBのタイムゾーンを日本時間に設定
     config.active_record.default_timezone = :local
-
+    # ymlファイルの読み込みを設定
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
