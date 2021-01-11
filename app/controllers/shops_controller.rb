@@ -28,7 +28,8 @@ class ShopsController < ApplicationController
                                                     :instgram_url,
                                                     :shop_info,
                                                     :sales_info,
-                                                    :user_id
+                                                    :user_id,
+                                                    shop_style_ids: []
                                                   )
   end
 end
