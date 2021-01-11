@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      shop: ショップ
+    attributes:
+      shop:
+        shop_name: ショップ名
+        open_time: 開店時間
+        close_time: 閉店時間
+        tel_number: 電話番号
+        site_url: WebサイトURL
+        instgram_url: Instgram URL
+        sales_info: 定休日・営業情報等
+        shop_info: オススメポイント
+  activemodel:
+    attributes: 
+      shop_registration_form:
+        shop_name: ショップ名
+        open_time: 開店時間
+        close_time: 閉店時間
+        tel_number: 電話番号
+        site_url: WebサイトURL
+        instgram_url: Instgram URL
+        sales_info: 定休日・営業情報等
+        shop_info: オススメポイント
