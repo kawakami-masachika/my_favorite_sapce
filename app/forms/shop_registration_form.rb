@@ -37,6 +37,8 @@ class ShopRegistrationForm
 
   validates :sales_info, length: {maximum: 50}, if: Proc.new{|shop|shop.sales_info.present?} #最大文字数
 
+  validates :shop_style_ids, presence: {message: :not_select}
+
   def save
     return false if invalid?
     shop.save!
