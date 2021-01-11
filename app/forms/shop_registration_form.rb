@@ -9,7 +9,8 @@ class ShopRegistrationForm
                 :instgram_url,
                 :shop_info,
                 :sales_info,
-                :user_id
+                :user_id,
+                :shop_style_ids
 
   def initialize(shop_params = {})
     @shop_name = shop_params[:shop_name]
@@ -21,6 +22,7 @@ class ShopRegistrationForm
     @shop_info = shop_params[:shop_info]
     @sales_info = shop_params[:sales_info]
     @user_id = shop_params[:user_id]
+    @shop_style_ids = shop_params[:shop_style_ids]
   end
 
   validates :shop_name, presence: true
@@ -38,11 +40,16 @@ class ShopRegistrationForm
   def save
     return false if invalid?
     shop.save!
+
+    if ary_params?(shop_style_ids)
+      shop_style(@shop.id)
+    end
+
   end
 
   private
   def shop
-    shop = Shop.new( shop_name: shop_name,
+    @shop = Shop.new( shop_name: shop_name,
                   open_time: open_time,
                   close_time: close_time,
                   tel_number: tel_number, 
@@ -51,5 +58,22 @@ class ShopRegistrationForm
                   shop_info: shop_info,
                   user_id: user_id
                 )
+  end
+
+  def shop_style(shop_id)
+    shop_style_list = []
+
+    shop_style_ids.each do |style_id|
+      style_params = {}
+      style_params[:shop_id] = shop_id
+      style_params[:style_id] = style_id
+      shop_style_list << style_params
+    end
+    ShopStyle.create(shop_style_list)
+  end
+
+  # 配列のサイズチェック
+  def ary_params?(pram_list)
+    pram_list.present? ? true : false
   end
 end
