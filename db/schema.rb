@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_140129) do
   end
 
   create_table "shop_images", force: :cascade do |t|
-    t.json "images", null: false, comment: "ショップ画像"
+    t.string "image", null: false, comment: "ショップ画像"
     t.bigint "shop_id", null: false, comment: "ショップID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
