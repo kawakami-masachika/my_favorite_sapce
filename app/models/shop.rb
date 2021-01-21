@@ -5,4 +5,6 @@ class Shop < ApplicationRecord
   has_many :styles, through: :shop_styles
   has_many :shop_brands, dependent: :destroy
   has_many :brands, through: :shop_brands
+
+  enum treatment: {male: 0, female: 1, unisex: 2}
 end
