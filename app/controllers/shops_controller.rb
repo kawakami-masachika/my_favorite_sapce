@@ -25,6 +25,7 @@ class ShopsController < ApplicationController
                                   :open_time,
                                   :close_time,
                                   :tel_number,
+                                  :treatment,
                                   :site_url,
                                   :instgram_url,
                                   :shop_info,
