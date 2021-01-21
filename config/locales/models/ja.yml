@@ -7,12 +7,19 @@ ja:
         shop_name: ショップ名
         open_time: 開店時間
         close_time: 閉店時間
+        treatment: 取り扱い
         tel_number: 電話番号
         site_url: WebサイトURL
         instgram_url: Instgram URL
         sales_info: 定休日・営業情報等
         shop_info: オススメポイント
         shop_style_ids: ショップの系統
+  enums:
+    shop:
+      treatment:
+        male: メンズ
+        female: レディース
+        unisex: メンズ・レディース
   activemodel:
     attributes: 
       shop_registration_form:
