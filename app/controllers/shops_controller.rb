@@ -4,14 +4,14 @@ class ShopsController < ApplicationController
   end
 
   def new
-    @shop = ShopRegistrationForm.new
+    @shop = Shop.new
     @shop.user_id =  current_user.id
   end
 
   def create
-    @shop = ShopRegistrationForm.new(shop_params)
+    @shop = Shop.new(shop_params)
     if @shop.save
-      flash[:notice] = "新たにショップを登録しました"
+      flash[:success] = "新たにショップを登録しました"
       redirect_to root_path
     else
       render 'new'
@@ -20,16 +20,16 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop_registration_form).permit( :shop_name,
-                                                    :open_time,
-                                                    :close_time,
-                                                    :tel_number,
-                                                    :site_url,
-                                                    :instgram_url,
-                                                    :shop_info,
-                                                    :sales_info,
-                                                    :user_id,
-                                                    shop_style_ids: []
-                                                  )
+    params.require(:shop).permit(
+                                  :shop_name,
+                                  :open_time,
+                                  :close_time,
+                                  :tel_number,
+                                  :site_url,
+                                  :instgram_url,
+                                  :shop_info,
+                                  :sales_info,
+                                  :user_id
+                                )
   end
 end
