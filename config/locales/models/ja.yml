@@ -15,6 +15,7 @@ ja:
         sales_info: 定休日・営業情報等
         shop_info: オススメポイント
         style_ids: ショップの系統
+        brand_ids: 取り扱いブランド
       shop/shop_images:
         image: ショップの画像
   enums:
