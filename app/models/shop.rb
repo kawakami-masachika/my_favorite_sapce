@@ -9,6 +9,7 @@ class Shop < ApplicationRecord
   enum treatment: {male: 0, female: 1, unisex: 2}
 
   accepts_nested_attributes_for :shop_styles, allow_destroy: true
+  accepts_nested_attributes_for :shop_images, allow_destroy: true
 
   # バリデーション
   validates :shop_name, presence: true
