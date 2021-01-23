@@ -3,7 +3,7 @@ class Shop < ApplicationRecord
   has_many :shop_images
   has_many :shop_styles, dependent: :destroy, validate: true, inverse_of: :shop
   has_many :styles, through: :shop_styles
-  has_many :shop_brands, dependent: :destroy
+  has_many :shop_brands, dependent: :destroy, validate: true, inverse_of: :shop
   has_many :brands, through: :shop_brands
 
   enum treatment: {male: 0, female: 1, unisex: 2}
@@ -22,7 +22,8 @@ class Shop < ApplicationRecord
   validates :shop_info, presence: true
   validates :shop_info, length: {maximum: 500}, if: Proc.new{|shop|shop.shop_info.present?}
   validates :style_ids, presence: {message: :not_select}
-
+  validates :brand_ids, presence: {message: :not_select}
+  
   # 関連付け先バリデーション
-  validates_associated :shop_styles
+  validates_associated :shop_styles, :shop_brands
 end
