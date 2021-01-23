@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       shop: ショップ
+      shop_images: ショップ画像
     attributes:
       shop:
         shop_name: ショップ名
@@ -14,6 +15,8 @@ ja:
         sales_info: 定休日・営業情報等
         shop_info: オススメポイント
         style_ids: ショップの系統
+      shop/shop_images:
+        image: ショップの画像
   enums:
     shop:
       treatment:

@@ -52,6 +52,18 @@
     <%= b.text %>
   <% end %>
 
+  <% if @shop.shop_images.size > 0 %>
+    <% @shop.shop_images.each do |shop_image| %>
+      <%= image_tag(shop_image.image.url) if shop_image.image? %>
+    <% end %>
+  <% end %>
+  <%= f.fields_for :shop_images do |ff| %>
+    <div class="form-group">
+      <%= ff.file_field :image %>
+      <%= ff.hidden_field :image_cache %>
+    </div>
+  <% end %>
+
   <%= f.hidden_field :user_id %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>
