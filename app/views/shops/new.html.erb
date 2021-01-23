@@ -46,6 +46,12 @@
     <p><%= f.label :shop_info %></p>
     <%= f.text_area :shop_info, class: "form-control" %>
   </div>
+
+  <%= f.collection_check_boxes :style_ids, Style.all, :id, :taste, checked: @shop.style_ids ,include_hidden: false do |b| %>
+    <%= b.check_box %>
+    <%= b.text %>
+  <% end %>
+
   <%= f.hidden_field :user_id %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

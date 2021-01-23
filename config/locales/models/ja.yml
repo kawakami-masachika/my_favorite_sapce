@@ -13,7 +13,7 @@ ja:
         instgram_url: Instgram URL
         sales_info: 定休日・営業情報等
         shop_info: オススメポイント
-        shop_style_ids: ショップの系統
+        style_ids: ショップの系統
   enums:
     shop:
       treatment:
@@ -31,4 +31,4 @@ ja:
         instgram_url: Instgram URL
         sales_info: 定休日・営業情報等
         shop_info: オススメポイント
-        shop_style_ids: ショップの系統
+        style_ids: ショップの系統
