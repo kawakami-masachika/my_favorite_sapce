@@ -10,7 +10,6 @@ class ShopsController < ApplicationController
   end
 
   def create
-    binding.pry
     @shop = Shop.new(shop_params)
     if @shop.save
       flash[:success] = "新たにショップを登録しました"
