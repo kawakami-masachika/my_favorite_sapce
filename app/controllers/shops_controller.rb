@@ -5,10 +5,12 @@ class ShopsController < ApplicationController
 
   def new
     @shop = Shop.new
+    @shop.shop_styles.build
     @shop.user_id =  current_user.id
   end
 
   def create
+    binding.pry
     @shop = Shop.new(shop_params)
     if @shop.save
       flash[:success] = "新たにショップを登録しました"
@@ -30,7 +32,8 @@ class ShopsController < ApplicationController
                                   :instgram_url,
                                   :shop_info,
                                   :sales_info,
-                                  :user_id
+                                  :user_id,
+                                  style_ids:[]
                                 )
   end
 end
