@@ -6,6 +6,7 @@ class ShopsController < ApplicationController
   def new
     @shop = Shop.new
     @shop.shop_styles.build
+    @shop.shop_brands.build
     2.times{@shop.shop_images.build}
     @shop.user_id =  current_user.id
   end
@@ -34,7 +35,8 @@ class ShopsController < ApplicationController
                                   :sales_info,
                                   :user_id,
                                   shop_images_attributes: [:id, :image, :image_cache],
-                                  style_ids:[]
+                                  style_ids:[],
+                                  brand_ids: []
                                 )
   end
 end
