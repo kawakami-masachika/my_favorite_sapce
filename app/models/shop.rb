@@ -10,6 +10,7 @@ class Shop < ApplicationRecord
 
   accepts_nested_attributes_for :shop_styles, allow_destroy: true
   accepts_nested_attributes_for :shop_images, allow_destroy: true
+  accepts_nested_attributes_for :shop_brands, allow_destroy: true
 
   # バリデーション
   validates :shop_name, presence: true

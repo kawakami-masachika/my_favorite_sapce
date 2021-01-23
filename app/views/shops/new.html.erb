@@ -51,6 +51,12 @@
     <%= b.check_box %>
     <%= b.text %>
   <% end %>
+  <div class="form-group">
+    <p><%= f.label :brand_ids %></p>
+    <%= f.collection_check_boxes :brand_ids, Brand.all, :id, :brand_name, checked: @shop.brand_ids ,include_hidden: false do |b| %>
+      <% b.label {b.check_box(data: {brand_id: b.object.id}) + b.text + b.object.brand_name_kana} %>
+    <% end %>
+  </div>
 
   <% if @shop.shop_images.size > 0 %>
     <% @shop.shop_images.each do |shop_image| %>
