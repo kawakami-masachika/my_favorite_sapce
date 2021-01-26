@@ -2,3 +2,13 @@
   <div class="notice"><%= flash[:success] %></div>
 <% end %>
 <h1 class="text-center">TOP PAGE</h1>
+<% @shops.each do |shop| %>
+  <div>
+    <%= shop.shop_name %>
+    <%= link_to "詳細", shop_path(shop) %>
+    <%= link_to "編集", edit_shop_path(shop) %>
+    <% if shop.user_id == current_user.id %>
+      <%= link_to "削除", shop_path(shop), method: :delete, data: { confirm: '削除します。 よろしいですか?' } %>
+    <% end %>
+  </div>
+<% end %>
