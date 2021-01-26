@@ -1,0 +1,59 @@
+<h1>ショップ詳細情報</h1>
+
+<div>
+  <%= Shop.human_attribute_name(:shop_name) %>
+  <%= @shop.shop_name %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:sales_time) %>
+  <%= @shop.open_time.strftime('%H:%M') %> ~ <%= @shop.close_time.strftime('%H:%M') %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:treatment) %>
+  <%= @shop.treatment_i18n %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:tel_number) %>
+  <%= link_to @shop.tel_number, "tel:" + @shop.tel_number %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:site_url) %>
+  <%= @shop.site_url %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:instgram_url) %>
+  <%= @shop.instgram_url %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:sales_info) %>
+  <%= @shop.sales_info %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:shop_info) %>
+  <%= @shop.shop_info %>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:style_ids) %>
+  <ul>
+    <% @shop.shop_styles.each do |shop_style| %>
+      <li><%= shop_style.style.taste %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <%= Shop.human_attribute_name(:brand_ids) %>
+  <ul>
+    <% @shop.shop_brands.each do |shop_brand| %>
+      <li><%= shop_brand.brand.brand_name %></li>
+    <% end %>
+  </ul>
+</div>
