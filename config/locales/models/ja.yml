@@ -8,6 +8,7 @@ ja:
         shop_name: ショップ名
         open_time: 開店時間
         close_time: 閉店時間
+        sales_time: 営業時間
         treatment: 取り扱い
         tel_number: 電話番号
         site_url: WebサイトURL
