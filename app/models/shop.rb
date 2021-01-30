@@ -1,4 +1,5 @@
 class Shop < ApplicationRecord
+  paginates_per 20
   belongs_to :user
   has_many :shop_images
   has_many :shop_styles, dependent: :destroy, validate: true, inverse_of: :shop
