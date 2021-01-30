@@ -1,7 +1,11 @@
-<% if flash[:success] %>
-  <div class="notice"><%= flash[:success] %></div>
-<% end %>
 <h1 class="text-center">TOP PAGE</h1>
+
+<% if flash[:success] %>
+  <div class="success"><%= flash[:success] %></div>
+<% elsif flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <% @shops.each do |shop| %>
   <div>
     <%= shop.shop_name %>

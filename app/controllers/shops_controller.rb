@@ -26,6 +26,18 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
   end
 
+  def destroy
+    shop = Shop.find(params[:id])
+
+    if shop.user_id == current_user.id
+      shop_name = shop.shop_name
+      shop.destroy
+      redirect_to root_path, flash: {success: "#{shop_name}の情報を削除しました"}
+    else
+      redirect_back(fallback_location: root_path, flash: {notice: "投稿ユーザー以外はショップ情報を削除できません"})
+    end
+  end
+
   private
   def shop_params
     params.require(:shop).permit(
