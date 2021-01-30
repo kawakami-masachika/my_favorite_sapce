@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_shop, only: %W(edit update show destroy)
   def index
     @shops = Shop.all
   end
@@ -22,16 +23,25 @@ class ShopsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @shop.update(shop_params)
+      redirect_to root_path, flash: {success: "#{@shop.shop_name}の情報を更新しました"}
+    else
+      render 'edit'
+    end
+  end
+
   def show
-    @shop = Shop.find(params[:id])
   end
 
   def destroy
-    shop = Shop.find(params[:id])
 
-    if shop.user_id == current_user.id
-      shop_name = shop.shop_name
-      shop.destroy
+    if @shop.user_id == current_user.id
+      shop_name = @shop.shop_name
+      @shop.destroy
       redirect_to root_path, flash: {success: "#{shop_name}の情報を削除しました"}
     else
       redirect_back(fallback_location: root_path, flash: {notice: "投稿ユーザー以外はショップ情報を削除できません"})
@@ -55,5 +65,9 @@ class ShopsController < ApplicationController
                                   style_ids:[],
                                   brand_ids: []
                                 )
+  end
+
+  def set_shop
+    @shop = Shop.find(params[:id])
   end
 end
