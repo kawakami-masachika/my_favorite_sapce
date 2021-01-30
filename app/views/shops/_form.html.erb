@@ -1,0 +1,161 @@
+<%= form_with model: shop, local: true do |f| %>
+  <div class="form-group">
+    <p><%= f.label :shop_name %></p>
+    <%= f.text_field :shop_name, class: "form-control" %>
+
+    <% if @shop.errors[:shop_name] %>
+      <ul>
+        <% @shop.errors[:shop_name].each do |message| %>
+          <li><%= Shop.human_attribute_name(:shop_name) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :open_time %></p>
+    <%= f.time_field :open_time, class: "form-control" %>
+    <% if @shop.errors[:open_time] %>
+      <ul>
+        <% @shop.errors[:open_time].each do |message| %>
+          <li><%= Shop.human_attribute_name(:open_time) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :close_time %></p>
+    <%= f.time_field :close_time, class: "form-control" %>
+    <% if @shop.errors[:close_time] %>
+      <ul>
+        <% @shop.errors[:close_time].each do |message| %>
+          <li><%= Shop.human_attribute_name(:close_time) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :tel_number %></p>
+    <%= f.text_field :tel_number, class: "form-control" %>
+    <% if @shop.errors[:tel_number] %>
+      <ul>
+        <% @shop.errors[:tel_number].each do |message| %>
+          <li><%= Shop.human_attribute_name(:tel_number) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :treatment %></p>
+    <%= f.select :treatment, Shop.treatments.keys.map{|k| [I18n.t("enums.shop.treatment.#{k}"), k]}, {prompt: "選択してください"}, class: "form-control" %>
+    <% if @shop.errors[:treatment] %>
+      <ul>
+        <% @shop.errors[:treatment].each do |message| %>
+          <li><%= Shop.human_attribute_name(:treatment) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :site_url %></p>
+    <%= f.text_field :site_url, class: "form-control" %>
+    <% if @shop.errors[:site_url] %>
+      <ul>
+        <% @shop.errors[:site_url].each do |message| %>
+          <li><%= Shop.human_attribute_name(:site_url) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :instgram_url %></p>
+    <%= f.text_field :instgram_url, class: "form-control" %>
+    <% if @shop.errors[:instgram_url] %>
+      <ul>
+        <% @shop.errors[:instgram_url].each do |message| %>
+          <li><%= Shop.human_attribute_name(:instgram_url) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :sales_info %></p>
+    <%= f.text_field :sales_info, class: "form-control" %>
+    <% if @shop.errors[:sales_info] %>
+      <ul>
+        <% @shop.errors[:sales_info].each do |message| %>
+          <li><%= Shop.human_attribute_name(:sales_info) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :shop_info %></p>
+    <%= f.text_area :shop_info, class: "form-control" %>
+    <% if @shop.errors[:shop_info] %>
+      <ul>
+        <% @shop.errors[:shop_info].each do |message| %>
+          <li><%= Shop.human_attribute_name(:shop_info) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <p><%= f.label :style_ids %></p>
+    <%= f.collection_check_boxes :style_ids, Style.all, :id, :taste, checked: @shop.style_ids ,include_hidden: false do |b| %>
+      <%= b.check_box %>
+      <%= b.text %>
+    <% end %>
+    <% if @shop.errors[:style_ids] %>
+      <ul>
+        <% @shop.errors[:style_ids].each do |message| %>
+          <li><%= Shop.human_attribute_name(:style_ids) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <p><%= f.label :brand_ids %></p>
+    <%= f.collection_check_boxes :brand_ids, Brand.all, :id, :brand_name, checked: @shop.brand_ids ,include_hidden: false do |b| %>
+      <% b.label {b.check_box(data: {brand_id: b.object.id}) + b.text + b.object.brand_name_kana} %>
+    <% end %>
+    <% if @shop.errors[:brand_ids] %>
+      <ul>
+        <% @shop.errors[:brand_ids].each do |message| %>
+          <li><%= Shop.human_attribute_name(:brand_ids) + message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <% if @shop.shop_images.size > 0 %>
+    <% @shop.shop_images.each do |shop_image| %>
+      <%= image_tag(shop_image.image.url) if shop_image.image? %>
+    <% end %>
+  <% end %>
+
+  <%= f.fields_for :shop_images do |ff| %>
+    <div class="form-group">
+      <%= ff.file_field :image %>
+      <%= ff.hidden_field :image_cache %>
+    </div>
+  <% end %>
+  <% if @shop.errors[:"shop_images.image"] %>
+    <ul>
+      <% @shop.errors[:"shop_images.image"].each do |message| %>
+        <li><%= ShopImage.human_attribute_name(:image) + message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
