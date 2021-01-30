@@ -274,6 +274,7 @@ DEPENDENCIES
   dotenv-rails
   enum_help
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry-byebug
