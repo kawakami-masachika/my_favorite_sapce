@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shop, only: %W(edit update show destroy)
   def index
-    @shops = Shop.all
+    @shops = Shop.order(:id).page params[:page]
   end
 
   def new
