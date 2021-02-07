@@ -4,5 +4,12 @@ Rails.application.routes.draw do
   devise_for :users
   # トップページ
   root to: 'shops#index'
-  resources :shops
+
+  resources :shops do
+    resources :reviews
+  end
+
+  namespace :users do
+    resources :reviews, only: %w(edit update show destroy)
+  end
 end
