@@ -1,31 +1,38 @@
 <h1>レビュー投稿</h1>
-<%= form_with model: @review, url: shop_reviews_path do |f| %>
+
+<%= form_with model: @review, url: shop_reviews_path, local: true do |f| %>
   <div class="form-group">
     <p><%= f.label :title %></p>
     <%= f.text_field :title, class:"form-control" %>
+    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'title'} %>
   </div>
 
   <div class="form-group" id="star">
-    <p><%= f.label :rate%></p>
-    <%= f.hidden_field :rate, id: :review_star %>
+      <p><%= f.label :rate%></p>
+      <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+  <div>
+    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'rate'} %>
   </div>
 
 
   <div class="form-group">
     <p><%= f.label :content %></p>
     <%= f.text_area :content, class:"form-control" %>
+    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'content'}%>
   </div>
+
   <%= f.submit %>
 <% end %>
 
 <script>
-  // $('#star').raty({
-  //   size     : 33,
-  //   starOff:  '<%= asset_path('star-off.png') %>',
-  //   starHalf : '<%= asset_path('star-half.png') %>',
-  //   starOn : '<%= asset_path('star-on.png') %>',
+  $('#star').raty({
+    size     : 33,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
 
-  //   scoreName: 'review[rate]]',
-  //   half: true,
-  // });
+    scoreName: 'review[rate]]',
+    half: true,
+  });
   </script>  
