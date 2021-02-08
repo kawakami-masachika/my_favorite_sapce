@@ -4,12 +4,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = current_user.reviews.new(review_params)
-    review.shop_id = params[:shop_id]
+    @review = current_user.reviews.new(review_params)
+    @review.shop_id = params[:shop_id]
+    binding.pry
     if @review.save
-      redirect_to shop_path, flash: {success: "#{Shop.find(review.shop_id).shop_name}のレビューを投稿しました"}
+      redirect_to shop_path, flash: {success: "#{Shop.find(@review.shop_id).shop_name}のレビューを投稿しました"}
     else
-      render 'new', flash: {notice: "レビューが投稿できませんでした"}
+      render 'new'
     end
   end
 
