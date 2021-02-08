@@ -3,6 +3,7 @@ ja:
     models:
       shop: ショップ
       shop_images: ショップ画像
+      review: レビュー
     attributes:
       shop:
         shop_name: ショップ名
@@ -19,6 +20,10 @@ ja:
         brand_ids: 取り扱いブランド
       shop/shop_images:
         image: ショップの画像
+      review:
+        title: タイトル
+        rate: オススメ度
+        content: オススメポイント
   enums:
     shop:
       treatment:
