@@ -1,0 +1,7 @@
+<% if review.errors[param_name.to_sym] %>
+  <ul>
+    <% review.errors[param_name.to_sym].each do |message| %>
+      <li><%= Review.human_attribute_name(param_name.to_sym) + message %></li>
+    <% end %>
+  </ul>
+<% end %>
