@@ -3,4 +3,6 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
-require('jquery')
+
+window.$ = window.jQuery = require('jquery'); 
+require('packs/raty')
