@@ -1,15 +1,18 @@
 class ReviewsController < ApplicationController
   def new
-    @review = current_user.reviews.new
+    @shop = Shop.find(params[:shop_id])
+    @review = current_user.reviews.build
   end
 
   def create
-    @review = current_user.reviews.new(review_params)
+    binding.pry
+    @review = current_user.reviews.build(review_params)
     @review.shop_id = params[:shop_id]
     if @review.save
-      redirect_to shop_path, flash: {success: "#{Shop.find(@review.shop_id).shop_name}のレビューを投稿しました"}
+      redirect_to shop_path(@review.shop_id), flash: {success: "#{Shop.find(@review.shop_id).shop_name}のレビューを投稿しました"}
     else
-      render 'new'
+      @shop = Shop.find(params[:shop_id])
+      render 'reviews/new'
     end
   end
 
