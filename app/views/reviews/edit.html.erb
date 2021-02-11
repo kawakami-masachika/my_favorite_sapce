@@ -1,0 +1,17 @@
+<h1>レビュー編集</h1>
+
+
+<%= render partial: 'form', locals: {shop: @shop, review: @review, action_path: shop_review_path } %>
+
+<script>
+  $('#star').raty({
+    size     : 33,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+
+    scoreName: 'review[rate]]',
+    score: <%= @review.rate %>,
+    half: true,
+  });
+</script>  
