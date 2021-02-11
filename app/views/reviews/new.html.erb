@@ -1,6 +1,6 @@
 <h1>レビュー投稿</h1>
 
-<%= form_with model: @review, url: shop_reviews_path, local: true do |f| %>
+<%= form_with model: [@shop, @review], url: shop_reviews_path, local: true do |f| %>
   <div class="form-group">
     <p><%= f.label :title %></p>
     <%= f.text_field :title, class:"form-control" %>
