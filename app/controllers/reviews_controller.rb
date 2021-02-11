@@ -30,6 +30,13 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review = Review.find(params[:id])
+    shop_id = @review.shop_id
+    @review.destroy
+    redirect_to shop_path(shop_id), flash: {success: "レビューを削除しました"}
+  end
+
   private
   def review_params
     params.require(:review).permit(:title, :rate, :content)
