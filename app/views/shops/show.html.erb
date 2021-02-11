@@ -59,3 +59,8 @@
 </div>
 
 <%= link_to "レビューを投稿する", new_shop_review_path(@shop) %>
+
+<hr>
+<% @shop.reviews.each do |review| %>
+  <%= review.title %>
+<% end %>
