@@ -1,30 +1,11 @@
 <h1>レビュー投稿</h1>
-
-<%= form_with model: [@shop, @review], url: shop_reviews_path, local: true do |f| %>
-  <div class="form-group">
-    <p><%= f.label :title %></p>
-    <%= f.text_field :title, class:"form-control" %>
-    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'title'} %>
-  </div>
-
-  <div class="form-group" id="star">
-      <p><%= f.label :rate%></p>
-      <%= f.hidden_field :rate, id: :review_star %>
-  </div>
-  <div>
-    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'rate'} %>
-  </div>
-
-
-  <div class="form-group">
-    <p><%= f.label :content %></p>
-    <%= f.text_area :content, class:"form-control" %>
-    <%= render partial: 'error_msg', locals: {review: @review, param_name: 'content'}%>
-  </div>
-
-  <%= f.submit %>
+<% if @review.errors[:user_id] %>
+  <% @review.errors[:user_id].each do |message| %>
+    <li><%= Review.human_attribute_name(:user_id) + message %></li>
+  <% end %>
 <% end %>
 
+<%= render partial: 'form', locals: {shop: @shop, review: @review, action_path: shop_reviews_path } %>
 <script>
   $('#star').raty({
     size     : 33,
@@ -35,4 +16,4 @@
     scoreName: 'review[rate]]',
     half: true,
   });
-  </script>  
+</script>  
