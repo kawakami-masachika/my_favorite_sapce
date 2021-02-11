@@ -30,6 +30,10 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find(params[:id])
+  end
+
   def destroy
     @review = Review.find(params[:id])
     shop_id = @review.shop_id

@@ -1,0 +1,29 @@
+<h1>レビュー詳細画面</h1>
+
+<div>
+  <%= Review.human_attribute_name(:title) %>
+  <%= @review.title %>
+</div>
+
+<div>
+  <%= Review.human_attribute_name(:rate) %>
+  <%= @review.rate %>
+  <div id="star-rate<%= @review.id %>"></div>  
+</div>
+
+<div>
+  <%= Review.human_attribute_name(:content) %>
+  <%= @review.content %>
+</div>
+
+<script>
+  $('#star-rate<%= @review.id %>').raty({
+    size     : 33,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starHalf : '<%= asset_path('star-half.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    half: true,
+    readOnly: true,
+    score: <%= @review.rate %>,
+  });
+</script>
