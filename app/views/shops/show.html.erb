@@ -67,6 +67,8 @@
 <hr>
 <% @shop.reviews.each do |review| %>
   <%= review.title %>
-  <%= link_to '編集', edit_shop_review_path(@shop, review) %>
-  <%= link_to '削除', shop_review_path(@shop, review), method: :DELETE, data: {confirm: "削除しますか？"} %>
+  <% if review.user_id == current_user.id %>
+    <%= link_to '編集', edit_shop_review_path(@shop, review) %>
+    <%= link_to '削除', shop_review_path(@shop, review), method: :DELETE, data: {confirm: "削除しますか？"} %>
+  <% end %>
 <% end %>
