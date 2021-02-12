@@ -1,6 +1,7 @@
-class LikeShopController < ApplicationController
+class LikeShopsController < ApplicationController
   before_action :set_shop
   def create
+    binding.pry
     current_user.like_shops.create(shop_id: @shop.id)
   end
 
