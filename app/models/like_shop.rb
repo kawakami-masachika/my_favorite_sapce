@@ -1,4 +1,4 @@
 class LikeShop < ApplicationRecord
   belongs_to :user
-  belongs_to :shop, :counter_cache => true
+  belongs_to :shop, counter_cache: :likes_count
 end
