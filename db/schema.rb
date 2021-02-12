@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_102644) do
   create_table "like_shops", force: :cascade do |t|
     t.bigint "shop_id", null: false, comment: "ショップID"
     t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.integer "likes_count", default: 0, null: false, comment: "お気に入り数"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id", "user_id"], name: "index_like_shops_on_shop_id_and_user_id", unique: true
