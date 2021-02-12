@@ -7,6 +7,7 @@ class Shop < ApplicationRecord
   has_many :shop_brands, dependent: :destroy, validate: true, inverse_of: :shop
   has_many :brands, through: :shop_brands
   has_many :reviews
+  has_many :like_shops
 
   enum treatment: {male: 0, female: 1, unisex: 2}
 
