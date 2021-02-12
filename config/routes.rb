@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :shops do
     resources :reviews
+    resource :like_shops, only: %w(create destroy)
   end
 
   namespace :users do
